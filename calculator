@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <math.h>
+double add(double a, double b);
+double subtract(double a, double b);
+double multiply(double a, double b);
+double divide(double a, double b);
+double power(double base, double exp);
+double squareRoot(double num);
+unsigned long long factorial(int n);
+
+int main() {
+    int choice;
+    double num1, num2;
+    int n;
+
+    while(1) {
+        printf("\n===== SMART CALCULATOR =====\n");
+        printf("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n");
+        printf("5. Power\n6. Square Root\n7. Factorial\n8. Modulus\n9. Exit\n");
+        printf("Choose an option: ");
+        if(scanf("%d", &choice) != 1) {
+            printf("Invalid input! Please enter a number.\n");
+            while(getchar() != '\n'); // Clear input buffer
+            continue;
+        }
+
+        switch(choice) {
+            case 1:
+                printf("Enter two numbers: ");
+                scanf("%lf %lf", &num1, &num2);
+                printf("Result: %.2lf\n", add(num1, num2));
+                break;
+            case 2:
+                printf("Enter two numbers: ");
+                scanf("%lf %lf", &num1, &num2);
+                printf("Result: %.2lf\n", subtract(num1, num2));
+                break;
+            case 3:
+                printf("Enter two numbers: ");
+                scanf("%lf %lf", &num1, &num2);
+                printf("Result: %.2lf\n", multiply(num1, num2));
+                break;
+            case 4:
+                printf("Enter two numbers: ");
+                scanf("%lf %lf", &num1, &num2);
+                if(num2 == 0) {
+                    printf("Error: Division by zero is not allowed.\n");
+                } else {
+                    printf("Result: %.2lf\n", divide(num1, num2));
+                }
+                break;
+            case 5:
+                printf("Enter base and exponent: ");
+                scanf("%lf %lf", &num1, &num2);
+                printf("Result: %.2lf\n", power(num1, num2));
+                break;
+            case 6:
+                printf("Enter a number: ");
+                scanf("%lf", &num1);
+                if(num1 < 0) {
+                    printf("Error: Cannot calculate square root of negative number.\n");
+                } else {
+                    printf("Result: %.2lf\n", squareRoot(num1));
+                }
+                break;
+            case 7:
+                printf("Enter a non-negative integer: ");
+                scanf("%d", &n);
+                if(n < 0) {
+                    printf("Error: Factorial of negative number not defined.\n");
+                } else {
+                    printf("Result: %llu\n", factorial(n));
+                }
+                break;
+            case 8:
+                {
+                    int a, b;
+                    printf("Enter two integers: ");
+                    scanf("%d %d", &a, &b);
+                    if(b == 0) {
+                        printf("Error: Modulus by zero is not allowed.\n");
+                    } else {
+                        printf("Result: %d\n", a % b);
+                    }
+                }
+                break;
+            case 9:
+                printf("Exiting... Goodbye!\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Please select from 1 to 9.\n");
+        }
+    }
+
+    return 0;
+}
+double add(double a, double b) { return a + b; }
+double subtract(double a, double b) { return a - b; }
+double multiply(double a, double b) { return a * b; }
+double divide(double a, double b) { return a / b; }
+double power(double base, double exp) { return pow(base, exp); }
+double squareRoot(double num) { return sqrt(num); }
+
+unsigned long long factorial(int n) {
+    if(n == 0) return 1;
+    unsigned long long fact = 1;
+    for(int i = 1; i <= n; i++) fact *= i;
+    return fact;
+}
